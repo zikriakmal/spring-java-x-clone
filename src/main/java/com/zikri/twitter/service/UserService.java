@@ -30,6 +30,7 @@ public class UserService {
     public UserResponse convertToUserResponse(User user) {
         // Assuming User entity has fields username and name
         return UserResponse.builder()
+                .id(user.getId())
                 .username(user.getUsername())
                 .name(user.getName())
                 .build();

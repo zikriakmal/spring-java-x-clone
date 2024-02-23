@@ -48,8 +48,8 @@ public class AuthService implements AuthServiceInterface {
         validationService.validate(registerRequest);
 
         User user = new User();
-        user.setUsername(registerRequest.getName());
-        user.setName(registerRequest.getUsername());
+        user.setName(registerRequest.getName());
+        user.setUsername(registerRequest.getUsername());
         user.setPassword(BCrypt.hashpw(registerRequest.getPassword(), BCrypt.gensalt()));
         userRepository.save(user);
 

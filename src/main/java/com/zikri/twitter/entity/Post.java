@@ -1,33 +1,30 @@
 package com.zikri.twitter.entity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "posts")
+public class Post {
 
-public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String username;
 
-    private String password;
 
-    private String name;
+    private String post;
 
-    @OneToMany
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private List<Post> posts;
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
 
 }
-

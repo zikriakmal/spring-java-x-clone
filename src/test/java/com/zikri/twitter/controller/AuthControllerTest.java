@@ -88,7 +88,6 @@ class AuthControllerTest {
         });
     }
 
-
     @Test
     void loginSuccess() throws Exception {
 

@@ -1,5 +1,6 @@
 package com.zikri.twitter.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,12 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
-public class UserResponse {
+public class PostResponse {
 
     private Integer id;
 
-    private String username;
+    private String post;
 
-    private String name;
+    private UserResponse user;
 }
