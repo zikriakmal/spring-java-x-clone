@@ -23,6 +23,10 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    public UserResponse getCurrentUser(){
+        return UserResponse.builder().username("username").name("name").build();
+    }
+
     public UserResponse convertToUserResponse(User user) {
         // Assuming User entity has fields username and name
         return UserResponse.builder()

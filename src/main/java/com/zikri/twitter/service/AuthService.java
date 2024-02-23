@@ -4,6 +4,7 @@ import com.zikri.twitter.dto.*;
 import com.zikri.twitter.entity.User;
 import com.zikri.twitter.repository.UserRepository;
 import com.zikri.twitter.security.BCrypt;
+import com.zikri.twitter.service.interfaces.AuthServiceInterface;
 import com.zikri.twitter.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class AuthService {
+public class AuthService implements AuthServiceInterface {
 
     @Autowired
     ValidationService validationService;
@@ -57,6 +58,5 @@ public class AuthService {
 
         return RegisterResponse.builder().user(userResponse).accessToken(accessToken).expiredAt(JwtUtil.EXPIRATION_TIME).build();
     }
-
 
 }
