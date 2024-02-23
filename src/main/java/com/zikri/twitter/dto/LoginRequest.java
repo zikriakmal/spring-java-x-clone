@@ -1,5 +1,7 @@
 package com.zikri.twitter.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,10 +11,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+public class LoginRequest {
 
-public class UserResponse {
-
+    @NotBlank
+    @Size(max = 100)
     private String username;
 
-    private String name;
+    @NotBlank
+    @Size(max = 100)
+    private String password;
+
 }

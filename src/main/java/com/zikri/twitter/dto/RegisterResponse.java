@@ -1,5 +1,6 @@
 package com.zikri.twitter.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,10 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+public class RegisterResponse {
+    private UserResponse user;
 
-public class UserResponse {
+    private String accessToken;
 
-    private String username;
-
-    private String name;
+    private Long expiredAt;
 }
