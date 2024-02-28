@@ -1,7 +1,6 @@
 package com.zikri.twitter.dto;
 
 import com.zikri.twitter.validation.UniqueUsernameValInt;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
