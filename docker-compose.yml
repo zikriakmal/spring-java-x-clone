@@ -6,6 +6,4 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8088:8080"
-networks:
-  local_net:
-    external: true
+    network_mode: "host"
