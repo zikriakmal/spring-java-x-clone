@@ -16,7 +16,7 @@ COPY pom.xml .
 RUN ./mvnw clean package -DskipTests
 
 # Expose the port that the application will run on
-EXPOSE 8080
+EXPOSE 8088
 
 # Specify the command to run on container startup
 CMD ["java", "-jar", "target/twitter-0.0.1-SNAPSHOT.jar"]
