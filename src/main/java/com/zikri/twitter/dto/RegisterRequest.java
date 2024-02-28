@@ -1,5 +1,7 @@
 package com.zikri.twitter.dto;
 
+import com.zikri.twitter.validation.UniqueUsernameValInt;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -15,6 +17,7 @@ public class RegisterRequest {
 
     @NotBlank
     @Size(max = 100)
+    @UniqueUsernameValInt(message = "has been taken")
     private String username;
 
     @NotBlank
