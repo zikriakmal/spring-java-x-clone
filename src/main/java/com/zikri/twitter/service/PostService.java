@@ -9,9 +9,15 @@ import com.zikri.twitter.repository.PostRepository;
 import com.zikri.twitter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -30,6 +36,8 @@ public class PostService {
         Post post = new Post();
         post.setUser(user);
         post.setPost(postRequest.getPost());
+        post.setCreatedAt(new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        post.setUpdatedAt(new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
         Post postResult = postRepository.save(post);
 
         return convertToPostResponse(postResult);
@@ -43,6 +51,17 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
+    public boolean deletePost(Integer postId, Integer authId) {
+
+        Post findId = postRepository.findById(postId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Post not found"));
+        if (Objects.equals(findId.getUser().getId(), authId)) {
+            postRepository.deleteById(postId);
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unauthorized");
+        }
+        return true;
+    }
+
     public List<PostResponse> getMyPosts(UserResponse userResponse) {
         List<Post> allUserPost = postRepository.findAllByUserId(userResponse.getId());
         return allUserPost.stream()
@@ -54,11 +73,14 @@ public class PostService {
         return PostResponse.builder()
                 .id(post.getId())
                 .post(post.getPost())
-                .user( UserResponse.builder()
-                                .id(post.getUser().getId())
-                                .name(post.getUser().getName())
-                                .username(post.getUser().getUsername())
-                                .build())
+                .createdAt(post.getCreatedAt())
+                .updatedAt(post.getUpdatedAt())
+                .FormattedUpdatedAtDifference(post.getFormattedUpdatedAtDifference())
+                .user(UserResponse.builder()
+                        .id(post.getUser().getId())
+                        .name(post.getUser().getName())
+                        .username(post.getUser().getUsername())
+                .build())
                 .build();
     }
 }

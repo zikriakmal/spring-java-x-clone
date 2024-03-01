@@ -29,13 +29,12 @@ public class PostController {
     }
 
     @DeleteMapping(
-            path = "/api/v1/posts",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
+            path = "/api/v1/posts/{postId}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public WebResponse<PostResponse> deletePost(@RequestBody PostRequest postRequest, UserResponse userResponse){
-        PostResponse postResult =  postService.createPost(postRequest,userResponse);
-        return WebResponse.<PostResponse>builder().data(postResult).build();
+    public WebResponse<Boolean> deletePost(@PathVariable Integer postId, UserResponse userResponse){
+        boolean postDelete = postService.deletePost(postId,userResponse.getId());
+        return WebResponse.<Boolean>builder().data(postDelete).build();
     }
 
     @GetMapping(
