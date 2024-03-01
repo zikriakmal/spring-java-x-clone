@@ -36,7 +36,7 @@ public class PostService {
     }
 
     public List<PostResponse> getAllPost() {
-        List<Post> allUserPost = postRepository.findAll();
+        List<Post> allUserPost = postRepository.findAllByOrderByIdDesc();
 
         return allUserPost.stream()
                 .map(this::convertToPostResponse)

@@ -44,13 +44,16 @@ public class UserArgumentResolver  implements HandlerMethodArgumentResolver {
         // You should have a method to validate the JWT token and extract the user information
         // For simplicity, let's assume you have a method validateAndExtractUser(String jwtToken)
         // that returns the user information if the token is valid
-        UserResponse user = JwtUtil.extractSubject(jwtToken);
 
-        if (user == null) {
+        try{
+            UserResponse user = JwtUtil.extractSubject(jwtToken);
+            if (user == null) {
+                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unauthorized");
+            }
+            return user;
+        }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unauthorized");
         }
-
-        return user;
     }
 
 
