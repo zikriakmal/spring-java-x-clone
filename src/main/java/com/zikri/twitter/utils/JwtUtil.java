@@ -2,7 +2,6 @@ package com.zikri.twitter.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zikri.twitter.dto.UserResponse;
-import com.zikri.twitter.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

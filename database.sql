@@ -3,6 +3,7 @@ CREATE DATABASE IF NOT EXISTS twitter_clone;
 USE twitter_clone;
 
 DROP table users;
+DROP table posts;
 
 CREATE TABLE IF NOT EXISTS users
 (
@@ -14,13 +15,7 @@ CREATE TABLE IF NOT EXISTS users
     UNIQUE (username)
 ) ENGINE innoDB;
 
-SELECT *
-FROM users;
-
-INSERT INTO users (username, password, name)
-VALUES ('user', '$2a$10$L/XBkDfCMR5yWoia5vvoWuDlCzkLyTpRBqihX2liITUJuVV1OU7XG', 'test', 'asldkfja', 12331313)
-
-DROP table posts;
+SELECT * FROM users;
 
 CREATE TABLE IF NOT EXISTS posts(
     id      INT NOT NULL AUTO_INCREMENT,

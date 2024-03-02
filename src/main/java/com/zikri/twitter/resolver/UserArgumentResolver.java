@@ -1,8 +1,6 @@
 package com.zikri.twitter.resolver;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zikri.twitter.dto.UserResponse;
-import com.zikri.twitter.entity.User;
 import com.zikri.twitter.repository.UserRepository;
 import com.zikri.twitter.utils.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
